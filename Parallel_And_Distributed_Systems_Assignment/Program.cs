@@ -43,8 +43,6 @@ namespace Parallel_And_Distributed_Systems_Assignment
 
             List<Item> items = new List<Item>();
 
-            List<string> duplicate = new List<string>();
-
             int count = 1;
 
             for (int i = 0; i < 100000; i++)
@@ -59,7 +57,15 @@ namespace Parallel_And_Distributed_Systems_Assignment
 
             items = items.OrderBy(x => rnd.Next()).ToList();
 
-            // FindBarcodes(items);
+            for (int i = 0; i < 4; i++)
+            {
+                int numOfThreads = i + 2;
+                if (numOfThreads == 5)
+                {
+                    numOfThreads++;
+                }
+                FindBarcodes(items, numOfThreads);
+            }
         }
 
         static void BubbleSort(List<int> numbers)
@@ -93,7 +99,6 @@ namespace Parallel_And_Distributed_Systems_Assignment
 
             stopWatch.Start();
 
-            
             List<List<int>> lists = new List<List<int>>();
 
             for (int i = 0; i < numOfThreads; i++)
@@ -105,29 +110,6 @@ namespace Parallel_And_Distributed_Systems_Assignment
             for (int i = 0; i < lists.Count; i++)
             {
                 lists[i].AddRange(numbers.Skip(i * count).Take(count));
-                //for (int j = 0; j < numbers.Count; j++)
-                //{
-                //    if (numbers[j] <= (separatorNum * i))
-                //    {
-                //        lists[i - 1].Add(numbers[j]);
-
-                //        var countDup = numbers
-                //            .Where(num => num == numbers[j])
-                //            .Count();
-
-                //        for (int k = 0; k < countDup; k++)
-                //        {
-                //            lists[i - 1].Add(numbers[j]);
-                //        }
-
-                //        numbers = numbers
-                //            .Where(num => num != numbers[j])
-                //            .ToList();
-
-                //        j -= 1;
-                //    }
-                //}
-                //lists[lists.Count - 1] = numbers;
             }
 
             List<Thread> activeThreads = new List<Thread>();
@@ -167,71 +149,22 @@ namespace Parallel_And_Distributed_Systems_Assignment
             Console.WriteLine($"Time elapsed for {numOfThreads} threads: {formatOfStopWatch}");
         }
 
-        static void FindBarcodes(List<Item> items)
+        static void FindBarcodes(List<Item> items, int numOfThreads)
         {
             Stopwatch stopWatch = Stopwatch.StartNew();
 
             stopWatch.Start();
 
-            int countOne = 0;
-            int countTwo = 0;
-            int countThree = 0;
-
             List<Thread> threads = new List<Thread>();
-
-            // ConcurrentDictionary<int, int> typeNumOfItems = new ConcurrentDictionary<int, int>();
-
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    var thread = new Thread(() =>
-            //    {
-            //        foreach (var item in items)
-            //        {
-            //            lock (Locker)
-            //            {
-            //                if (countOne < 30)
-            //                {
-            //                    if (item.Type == 1)
-            //                    {
-            //                        typeNumOfItems[1] = countOne++;
-            //                    }
-            //                }
-            //            }
-            //            lock (Locker)
-            //            {
-            //                if (countTwo < 15)
-            //                {
-            //                    if (item.Type == 7)
-            //                    {
-            //                        typeNumOfItems[7] = countTwo++;
-            //                    }
-            //                }
-            //            }
-            //            lock (Locker)
-            //            {
-            //                if (countThree < 8)
-            //                {
-            //                    if (item.Type == 10)
-            //                    {
-            //                        typeNumOfItems[10] = countThree++;
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    });
-
-            //    thread.Start();
-            //    threads.Add(thread);
-            //}
 
             List<List<Item>> lists = new List<List<Item>>();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < numOfThreads; i++)
             {
                 lists.Add(new List<Item>());
             }
 
-            int count = items.Count / 2;
+            int count = items.Count / numOfThreads;
 
             for (int i = 0; i < lists.Count; i++)
             {
@@ -255,57 +188,10 @@ namespace Parallel_And_Distributed_Systems_Assignment
                 Console.WriteLine($"{item.Key} - {item.Value}");
             }
 
-            ParallelOptions options = new ParallelOptions()
-            {
-                MaxDegreeOfParallelism = 2
-            };
-
-            //Parallel.ForEach(items, options, (item, state) =>
-            //{
-
-            //    foreach (Item itemOne in items)
-            //    {
-
-
-            //    }
-            //    if (itemOfTypeOne.Count < 30)
-            //    {
-            //        if (item.Type == 1)
-            //        {
-            //            itemOfTypeOne.Add(item.Barcode);
-            //            count++;
-            //        }
-            //    }
-            //    if (itemOfTypeSeven.Count < 15)
-            //    {
-            //        if (item.Type == 7)
-            //        {
-            //            itemOfTypeSeven.Add(item.Barcode);
-            //            count++;
-            //        }
-            //    }
-            //    if (itemOfTypeTen.Count < 8)
-            //    {
-            //        if (item.Type == 10)
-            //        {
-            //            itemOfTypeTen.Add(item.Barcode);
-            //            count++;
-            //        }
-            //    }
-            //    if (count == 53)
-            //    {
-            //        state.Stop();
-            //    }
-            //});
-
-            //Console.WriteLine(itemOfTypeOne.Count.ToString());
-            //Console.WriteLine(itemOfTypeSeven.Count.ToString());
-            //Console.WriteLine(itemOfTypeTen.Count.ToString());
-
             stopWatch.Stop();
             TimeSpan timeElapsed = stopWatch.Elapsed;
             string formatOfStopWatch = string.Format("{0:00}:{1:00}:{2:00}.{3:00}", timeElapsed.Hours, timeElapsed.Minutes, timeElapsed.Seconds, timeElapsed.Milliseconds / 10);
-            Console.WriteLine($"Time elapsed to find the items: {formatOfStopWatch}");
+            Console.WriteLine($"Time elapsed to find the items for {numOfThreads} threads: {formatOfStopWatch}");
 
             foreach (var barcode in itemOfTypeOne)
             {
@@ -396,30 +282,6 @@ namespace Parallel_And_Distributed_Systems_Assignment
                     indexResult++;
                 }
             }
-            return result;
-        }
-
-        static string GenerateBarcode(List<string> duplicate)
-        {
-            Random rnd = new Random();
-
-            string result = "";
-
-            for (int i = 0; i < 10; i++)
-            {
-                result += rnd.Next(10).ToString();
-            }
-
-            for (int i = 0; i < duplicate.Count; i++)
-            {
-                if (duplicate[i] == result)
-                {
-                    Console.WriteLine("Found duplicate");
-                }
-            }
-
-            duplicate.Add(result);
-
             return result;
         }
 
