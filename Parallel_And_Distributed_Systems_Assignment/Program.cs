@@ -1,6 +1,5 @@
 ﻿using System.Collections.Concurrent;
 using System.Diagnostics;
-using System.Numerics;
 
 namespace Parallel_And_Distributed_Systems_Assignment
 {
@@ -13,16 +12,23 @@ namespace Parallel_And_Distributed_Systems_Assignment
     internal class Program
     {
         // Change the file path if you want to see the result of sorting
-        static string fileName = @"C:\\Users\\Andru\\source\\repos\\Parallel_And_Distributed_Systems\\Parallel_And_Distributed_Systems_Assignment\\";
+        // static string fileName = @"C:\\Users\\Andru\\source\\repos\\Parallel_And_Distributed_Systems\\Parallel_And_Distributed_Systems_Assignment\\";
         static object Locker = new object();
         static int countOne = 0;
         static int countTwo = 0;
         static int countThree = 0;
         static ConcurrentDictionary<int, int> typeNumOfItems = new ConcurrentDictionary<int, int>();
         static ConcurrentBag<string> itemOfTypeOne = new ConcurrentBag<string>();
+        static ConcurrentBag<string> itemOfTypeSeven = new ConcurrentBag<string>();
+        static ConcurrentBag<string> itemOfTypeTen = new ConcurrentBag<string>();
         static void Main(string[] args)
         {
             Random rnd = new Random();
+
+            // ParallelBubbleSort
+
+            Console.WriteLine("Parallel Bubble Sort");
+            Console.WriteLine();
 
             List<int> numbers = new List<int>();
 
@@ -40,6 +46,12 @@ namespace Parallel_And_Distributed_Systems_Assignment
                 }
                 ParallelBubbleSort(numbers, numOfThreads);
             }
+
+            // ParallelFindBarcodes
+
+            Console.WriteLine();
+            Console.WriteLine("Parallel Find Barcodes");
+            Console.WriteLine();
 
             List<Item> items = new List<Item>();
 
@@ -135,18 +147,20 @@ namespace Parallel_And_Distributed_Systems_Assignment
 
             result = MergeSort(result);
 
-            using (StreamWriter writer = new StreamWriter(fileName + "numbers" + numOfThreads + ".txt"))
-            {
-                foreach (var num in result)
-                {
-                    writer.WriteLine(num);
-                }
-            }
-
             stopWatch.Stop();
             TimeSpan timeElapsed = stopWatch.Elapsed;
             string formatOfStopWatch = string.Format("{0:00}:{1:00}:{2:00}.{3:00}", timeElapsed.Hours, timeElapsed.Minutes, timeElapsed.Seconds, timeElapsed.Milliseconds / 10);
             Console.WriteLine($"Time elapsed for {numOfThreads} threads: {formatOfStopWatch}");
+
+            // Use the function below to see the result in a text file
+
+            //using (StreamWriter writer = new StreamWriter(fileName + "numbers" + numOfThreads + ".txt"))
+            //{
+            //    foreach (var num in result)
+            //    {
+            //        writer.WriteLine(num);
+            //    }
+            //}
         }
 
         static void FindBarcodes(List<Item> items, int numOfThreads)
@@ -193,12 +207,32 @@ namespace Parallel_And_Distributed_Systems_Assignment
             string formatOfStopWatch = string.Format("{0:00}:{1:00}:{2:00}.{3:00}", timeElapsed.Hours, timeElapsed.Minutes, timeElapsed.Seconds, timeElapsed.Milliseconds / 10);
             Console.WriteLine($"Time elapsed to find the items for {numOfThreads} threads: {formatOfStopWatch}");
 
+            Console.WriteLine();
+            Console.WriteLine("Item of type one");
+            Console.WriteLine();
+
             foreach (var barcode in itemOfTypeOne)
             {
                 Console.WriteLine(barcode);
             }
 
-            Console.WriteLine(itemOfTypeOne.Count);
+            Console.WriteLine();
+            Console.WriteLine("Item of type seven");
+            Console.WriteLine();
+
+            foreach (var barcode in itemOfTypeSeven)
+            {
+                Console.WriteLine(barcode);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Item of type ten");
+            Console.WriteLine();
+
+            foreach (var barcode in itemOfTypeTen)
+            {
+                Console.WriteLine(barcode);
+            }
         }
 
         static List<int> MergeSort(List<int> numbers)
@@ -297,6 +331,7 @@ namespace Parallel_And_Distributed_Systems_Assignment
                         {
                             countOne++;
                             typeNumOfItems[1] = countOne;
+                            itemOfTypeOne.Add(item.Barcode);
                         }
                     }
                 }
@@ -308,6 +343,7 @@ namespace Parallel_And_Distributed_Systems_Assignment
                         {
                             countTwo++;
                             typeNumOfItems[7] = countTwo;
+                            itemOfTypeSeven.Add(item.Barcode);
                         }
                     }
                 }
@@ -319,6 +355,7 @@ namespace Parallel_And_Distributed_Systems_Assignment
                         {
                             countThree++;
                             typeNumOfItems[10] = countThree;
+                            itemOfTypeTen.Add(item.Barcode);
                         }
                     }
                 }
