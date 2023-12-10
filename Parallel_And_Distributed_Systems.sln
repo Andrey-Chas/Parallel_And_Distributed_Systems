@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parallel_And_Distributed_Sy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parallel_And_Distributed_Systems_3", "Parallel_And_Distributed_Systems_3\Parallel_And_Distributed_Systems_3.csproj", "{EFF0EECC-725C-4004-A41D-BB43CA2CFF7F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parallel_And_Distributed_Systems_4", "Parallel_And_Distributed_Systems_4\Parallel_And_Distributed_Systems_4.csproj", "{9971150E-836A-4407-A73A-2D99A3B13215}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parallel_And_Distributed_Systems_Assignment_2", "Parallel_And_Distributed_Systems_Assignment_2\Parallel_And_Distributed_Systems_Assignment_2.csproj", "{EA97AD69-4022-4843-9488-CB31F0A2ABAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{EFF0EECC-725C-4004-A41D-BB43CA2CFF7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFF0EECC-725C-4004-A41D-BB43CA2CFF7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFF0EECC-725C-4004-A41D-BB43CA2CFF7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9971150E-836A-4407-A73A-2D99A3B13215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9971150E-836A-4407-A73A-2D99A3B13215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9971150E-836A-4407-A73A-2D99A3B13215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9971150E-836A-4407-A73A-2D99A3B13215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
