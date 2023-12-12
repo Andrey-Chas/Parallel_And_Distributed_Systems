@@ -88,6 +88,8 @@ namespace Parallel_And_Distributed_Systems_Assignment_2
                 }
             }
 
+            // Change the path to see the representation of the circles
+
             bitmap.Save("C:\\Users\\Andru\\source\\repos\\Parallel_And_Distributed_Systems\\Parallel_And_Distributed_Systems_Assignment_2\\Circle" + numOfWorkers + ".jpg");
         }
     }
