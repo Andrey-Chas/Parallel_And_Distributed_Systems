@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parallel_And_Distributed_Sy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parallel_And_Distributed_Systems_Assignment_2", "Parallel_And_Distributed_Systems_Assignment_2\Parallel_And_Distributed_Systems_Assignment_2.csproj", "{EA97AD69-4022-4843-9488-CB31F0A2ABAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parallel_And_Distributed_Systems_Assignment_2_W", "Parallel_And_Distributed_Systems_Assignment_2_W\Parallel_And_Distributed_Systems_Assignment_2_W.csproj", "{5E3811AF-7391-47C0-A4B1-942B6F8BF954}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA97AD69-4022-4843-9488-CB31F0A2ABAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3811AF-7391-47C0-A4B1-942B6F8BF954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3811AF-7391-47C0-A4B1-942B6F8BF954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3811AF-7391-47C0-A4B1-942B6F8BF954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3811AF-7391-47C0-A4B1-942B6F8BF954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
